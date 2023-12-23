@@ -8,7 +8,7 @@ ISP =  subprocess.check_output('curl -s ipinfo.io/org | cut -d " " -f 2-10', she
 
 def trial_tr():
     exp = 60
-    cmd = f'printf "%s\n" "{exp}" | trialtr-api'
+    cmd = f'{exp}" | trialtr-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
