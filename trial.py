@@ -5,7 +5,7 @@ HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-
 
 def trial_tr():
     exp = 60
-    cmd = f'printf "%s\n" "{exp}" | trialtr'
+    cmd = f'printf "%s\n" "{exp}" | trialtr-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
