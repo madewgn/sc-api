@@ -2,6 +2,9 @@ import subprocess
 import re
 
 HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-8")
+kota =  subprocess.check_output('curl -s ipinfo.io/city', shell=True).decode("utf-8")
+ISP =  subprocess.check_output('curl -s ipinfo.io/org | cut -d " " -f 2-10', shell=True).decode("utf-8")
+
 
 def trial_tr():
     exp = 60
@@ -18,29 +21,6 @@ def trial_tr():
         remarks = re.search("#(.*)",b[0]).group(1)
         domain = re.search("@(.*?):",b[0]).group(1)
         uuid = re.search("trojan://(.*?)@",b[0]).group(1)
-        msg = f"""
-**━━━━━━━━━━━━━━━━━**
-**🇮🇩🇮🇩 Xray/Trojan Account 🇮🇩🇮🇩**
-**━━━━━━━━━━━━━━━━━**
-**» Remarks     :** `{remarks}`
-**» Host Server :** `{domain}`
-**» Host XrayDNS:** `{HOST}`
-**» User Quota  :** `Unlimited`
-**» Port DNS    :** `443, 53`
-**» port TLS    :** `222-1000`
-**» Path Trojan :** `(/multi path)/trojan-ws`
-**» User ID     :** `{uuid}`
-**━━━━━━━━━━━━━━━━**
-**» Link WS    :** 
-`{b[0].replace(" ","")}`
-**━━━━━━━━━━━━━━━━**
-**» Link GRPC  :** 
-`{b[1].replace(" ","")}`
-**━━━━━━━━━━━━━━━━**
-**» Expired Until:** `{exp} Minutes`
-**» 🌀@LunaticTunnel**
-"""
-
 
         return {
   "meta": {
@@ -48,11 +28,14 @@ def trial_tr():
     "status": "success",
     "ip_address": domain,
     "message": "Create TROJAN-WS Success"
-  },                                                                            "data": {
+
+  },
+    "data": {
     "hostname": domain,
-    "ISP": "Akamai Connected Cloud",                                              "CITY": "Jakarta",
+    "ISP": ISP,                                              
+    "CITY": kota,
     "username": remarks,
-    "expired": "2 Hour",
+    "expired": exp,
     "uuid": uuid,
     "port": {
       "tls": "443"
