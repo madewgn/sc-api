@@ -1,5 +1,5 @@
 import subprocess
-import re,json,random
+import re,json,random,base64
 
 HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-8")
 kota =  subprocess.check_output('curl -s ipinfo.io/city', shell=True).decode("utf-8")
