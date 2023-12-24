@@ -204,5 +204,5 @@ def trial_tr():
 
 
 if __name__ == "__main__":
-    print(trial_vm())
+    print(trial_vl())
 
