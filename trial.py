@@ -59,7 +59,7 @@ def trial_ssh():
 
 
 def trial_vl():
-    cmd = f'printf "%s\n" "{exp}" | trialvless'
+    cmd = f'printf "%s\n" "{exp}" | trialvless-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
