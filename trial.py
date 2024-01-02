@@ -2,8 +2,8 @@ import subprocess
 import re,json,random,base64
 
 HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-8")
-kota =  subprocess.check_output('curl -s ipinfo.io/city', shell=True).decode("utf-8")
-ISP =  subprocess.check_output('curl -s ipinfo.io/org | cut -d " " -f 2-10', shell=True).decode("utf-8")
+kota =  subprocess.check_output('cat /etc/xray/city', shell=True).decode("utf-8")
+ISP =  subprocess.check_output('curl /etc/xray/isp', shell=True).decode("utf-8")
 DOMAIN = HOST
 exp = 60
 
@@ -22,40 +22,48 @@ def trial_ssh():
     else:
         #today = DT.date.today()
         #later = today + DT.timedelta(days=int(exp))
-        msg = f"""
-**━━━━━━━━━━━━━━━━━**
-**🇮🇩🇮🇩 SSH OVPN ACCOUNT 🇮🇩🇮🇩**
-**━━━━━━━━━━━━━━━━━**
-**» Username         :** `{user.strip()}`
-**» Password         :** `{pw.strip()}`
-**━━━━━━━━━━━━━━━━━**
-**» Host             :** `{HOST}`
-**» Port OpenSSH     :** `443, 80, 22`
-**» Port DNS         :** `443, 53 ,22`
-**» Port Dropbear    :** `443, 109`
-**» Port Dropbear WS :** `443, 109`
-**» Port SSH WS      :** `80, 8080, 8081-9999 `
-**» Port SSH SSL WS  :** `443`
-**» Port SSL/TLS     :** `222-1000`
-**» Port OVPN WS SSL :** `443`
-**» Port OVPN SSL    :** `443`
-**» Port OVPN TCP    :** `443, 1194`
-**» Port OVPN UDP    :** `2200`
-**» Proxy Squid      :** `3128`
-**» BadVPN UDP       :** `7100, 7300, 7300`
-**━━━━━━━━━━━━━━━━━**
-**» Payload WSS      :** `GET wss://BUG.COM/ HTTP/1.1[crlf]Host: {DOMAIN}[crlf]Upgrade: websocket[crlf][crlf]`
-**━━━━━━━━━━━━━━━━━**
-**» OpenVPN WS SSL   :** `https://{DOMAIN}:81/ws-ssl.ovpn`
-**» OpenVPN SSL      :** `https://{DOMAIN}:81/ssl.ovpn`
-**» OpenVPN TCP      :** `https://{DOMAIN}:81/tcp.ovpn`
-**» OpenVPN UDP      :** `https://{DOMAIN}:81/udp.ovpn`
-**━━━━━━━━━━━━━━━━━**
-**» Save Link Account:** `https://{DOMAIN}:81/ssh-{user.strip()}.txt`
-**» Expired Until:** `{exp} Minutes`
+        data = f'''
+{
+  "meta": {
+    "code": 200,
+    "status": "success",
+    "ip_address": "172.105.123.98",
+    "message": "Create SSH Success"
+  },
+  "data": {
+    "hostname": {HOST},
+    "ISP": "Akamai Connected Cloud",
+    "CITY": "Singapore",
+    "username": {user.strip()},
+    "servername": "",
+    "pubkey": "",
+    "password": {pw.strip()},
+    "exp": "{exp} Minutes",
+    "port": {
+      "tls": 443,
+      "none": 80,
+      "drop1": 90,
+      "drop2": 69,
+      "ssh1": 444,
+      "ovpntcp": 1194,
+      "ovpnudp": 25000,
+      "slowdns": 53,
+      "slowdns1": 5300,
+      "sshohp": 9080,
+      "sshudp": "1-65535",
+      "ovpnohp": 9088,
+      "squid": 3128,
+      "udpcustom": "1-65535"
+    },
+    "payloadws": {
+      "payloadcdn": "GET / HTTP/1.1[crlf]Host: [host_port][crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
+      "payloadwithpath": "GET /worryfree/ssh HTTP/1.1[crlf]Host: BUG[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
+    }
+  }
+}
+        '''
 
-"""
-        return msg
+        return data
 
 
 def trial_vl():
