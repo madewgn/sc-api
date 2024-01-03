@@ -3,7 +3,7 @@ import re,json,random,base64
 
 HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-8")
 kota =  subprocess.check_output('cat /etc/xray/city', shell=True).decode("utf-8")
-ISP =  subprocess.check_output('curl /etc/xray/isp', shell=True).decode("utf-8")
+ISP =  subprocess.check_output('cat /etc/xray/isp', shell=True).decode("utf-8")
 DOMAIN = HOST
 exp = 60
 
