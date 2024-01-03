@@ -22,46 +22,44 @@ def trial_ssh():
     else:
         #today = DT.date.today()
         #later = today + DT.timedelta(days=int(exp))
-        data = f'''
-{
-  "meta": {
-    "code": 200,
-    "status": "success",
-    "ip_address": "172.105.123.98",
-    "message": "Create SSH Success"
-  },
-  "data": {
-    "hostname": {HOST},
-    "ISP": "Akamai Connected Cloud",
-    "CITY": "Singapore",
-    "username": {user.strip()},
-    "servername": "",
-    "pubkey": "",
-    "password": {pw.strip()},
-    "exp": "{exp} Minutes",
-    "port": {
-      "tls": 443,
-      "none": 80,
-      "drop1": 90,
-      "drop2": 69,
-      "ssh1": 444,
-      "ovpntcp": 1194,
-      "ovpnudp": 25000,
-      "slowdns": 53,
-      "slowdns1": 5300,
-      "sshohp": 9080,
-      "sshudp": "1-65535",
-      "ovpnohp": 9088,
-      "squid": 3128,
-      "udpcustom": "1-65535"
-    },
-    "payloadws": {
-      "payloadcdn": "GET / HTTP/1.1[crlf]Host: [host_port][crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
-      "payloadwithpath": "GET /worryfree/ssh HTTP/1.1[crlf]Host: BUG[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
-    }
-  }
-}
-        '''
+        data =  {
+          "meta": {
+            "code": 200,
+            "status": "success",
+            "ip_address": "172.105.123.98",
+            "message": "Create SSH Success"
+          },
+          "data": {
+            "hostname": HOST,
+            "ISP": ISP,
+            "CITY": kota,
+            "username": user.strip(),
+            "servername": "",
+            "pubkey": "",
+            "password": pw.strip(),
+            "exp": exp,
+            "port": {
+              "tls": 443,
+              "none": 80,
+              "drop1": 90,
+              "drop2": 69,
+              "ssh1": 444,
+              "ovpntcp": 1194,
+              "ovpnudp": 25000,
+              "slowdns": 53,
+              "slowdns1": 5300,
+              "sshohp": 9080,
+              "sshudp": "1-65535",
+              "ovpnohp": 9088,
+              "squid": 3128,
+              "udpcustom": "1-65535"
+            },
+            "payloadws": {
+              "payloadcdn": "GET / HTTP/1.1[crlf]Host: [host_port][crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
+              "payloadwithpath": "GET /worryfree/ssh HTTP/1.1[crlf]Host: BUG[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
+            }
+          }
+        }
 
         return data
 
