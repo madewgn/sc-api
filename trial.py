@@ -79,34 +79,35 @@ def trial_vl():
         # domain = re.search("@(.*?):",x[0]).group(1)
         uuid = re.search("vless://(.*?)@",x[0]).group(1)
         # path = re.search("path=(.*)&",x[0]).group(1)
-        msg = f"""
-**━━━━━━━━━━━━━━━━━**
-**⭐ XRAY / VLESS ⭐**
-**━━━━━━━━━━━━━━━━━**
-**» Remarks     :** `{remarks}`
-**» Host Server :** `{HOST}`
-**» Host XrayDNS:** `{HOST}`
-**» User Quota  :** `Unlimited`
-**» Port DNS    :** `443, 53`
-**» port TLS    :** `222-1000`
-**» Port NTLS   :** `80, 8080, 8081-9999`
-**» NetWork     :** `(WS) or (gRPC)`
-**» User ID     :** `{uuid}`
-**» Path Vless  :** `(/multi path)/vless `
-**» Path Dynamic:** `http://BUG.COM/vless `
-**━━━━━━━━━━━━━━━━━**
-**» Link TLS   : **
-`{x[0]}`
-**━━━━━━━━━━━━━━━━━**
-**» Link NTLS  :**
-`{x[1].replace(" ","")}`
-**━━━━━━━━━━━━━━━━━**
-**» Link GRPC  :**
-`{x[2].replace(" ","")}`
-**━━━━━━━━━━━━━━━━━**
-**» Expired Until :** `{exp} Minutes`
-"""
-        return msg
+        return {
+  "meta": {
+    "code": 200,
+    "status": "success",
+    "ip_address": DOMAIN,
+    "message": "Create VLESS-WS Success"
+  },
+  "data": {
+    "hostname": DOMAIN,
+    "ISP": ISP,
+    "CITY": kota,
+    "username": remarks,
+    "expired": exp,
+    "uuid": uuid,
+    "port": {
+      "tls": "443",
+      "none": "80",
+      "any": "8080"
+    },
+    "path": {
+      "stn": "/vless",
+      "multi": "/yourbug/vless"
+    },
+    "link": {
+      "tls": x[0],
+      "none": x[1].replace(" ","")
+    }
+  }
+}
 
 
 
