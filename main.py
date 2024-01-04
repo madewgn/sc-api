@@ -19,6 +19,7 @@ app = FastAPI()
 # Model Pydantic untuk data yang diharapkan
 class UserData(BaseModel):
     username: str
+    rebug: str
     expired: str
 
 
