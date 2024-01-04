@@ -33,8 +33,8 @@ def vmess(user,exp,pw):
         return cmd
 
 
-def trojan(user,exp,pw):
-    cmd = f'printf "%s\n" "{user}" "{exp}" "{pw}" | addtr-api'
+def trojan(user,exp):
+    cmd = f'printf "%s\n" "{user}" "{exp}" | addtr-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
