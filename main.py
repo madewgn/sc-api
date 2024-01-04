@@ -35,8 +35,8 @@ async def sshv():
 
 
 @app.post("/vps/trojanws")
-async def tr(u,pw,exp):
-    return create.trojan(u,pw,exp)
+async def tr(u,exp):
+    return create.trojan(u,exp)
 
 @app.post("/vps/vmessws")
 async def vm(u,pw,exp):
