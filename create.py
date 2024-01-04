@@ -30,7 +30,31 @@ def vmess(user,exp):
         z1 = base64.b64decode(b[1].replace("vmess://","")).decode("ascii")
         z1 = json.loads(z1)
 
-        return cmd
+        return {
+  "meta": {                                                                                              "code": 200,                                                                                         "status": "success",                                                                                 "ip_address": "172.105.123.98",                                                                      "message": "Create VMESS-WS Success"
+  },
+  "data": {
+    "hostname": DOMAIN,
+    "ISP": ISP,
+    "CITY": kota,
+    "username": z['ps'],
+    "expired": "2 Hour",
+    "uuid": z['id'],
+    "port": {
+      "tls": "443",
+      "none": "80",
+      "any": "8080"
+    },
+    "path": {
+      "stn": "/vmess",
+      "multi": "/yourbug"
+    },
+    "link": {
+      "tls": b[0].strip("'").replace(" ",""),
+      "none": b[1].strip("'").replace(" ","") 
+    }
+  }
+}
 
 
 def trojan(user,exp):
