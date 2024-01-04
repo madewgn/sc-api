@@ -19,7 +19,7 @@ app = FastAPI()
 # Model Pydantic untuk data yang diharapkan
 class UserData(BaseModel):
     username: str
-    expiration: str
+    expired: str
 
 
 @app.post("/vps/trialvlessws")
@@ -54,15 +54,15 @@ async def sshv(request: Request):
 
 @app.post("/vps/trojanws")
 async def tr(request: Request, user_data: UserData):
-    return create.trojan(user_data.username, user_data.expiration)
+    return create.trojan(user_data.username, user_data.expired)
 
 @app.post("/vps/vmessws")
 async def vm(request: Request, user_data: UserData):
-    return create.vmess(user_data.username, user_data.expiration)
+    return create.vmess(user_data.username, user_data.expired)
 
 @app.post("/vps/vlessws")
 async def vl(request: Request, user_data: UserData):
-    return create.vless(user_data.username, user_data.expiration)
+    return create.vless(user_data.username, user_data.expired)
 
 
 
