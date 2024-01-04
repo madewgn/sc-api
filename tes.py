@@ -16,7 +16,7 @@ data_ssh = {
 
 # Data yang akan dipost ke endpoint /vps/trojanws
 data_trojan = {
-    "username": "user_trojan",
+    "username": "user_trsbsbsojan",
     "expiration": "1"
 }
 
@@ -40,7 +40,7 @@ response_trojan = requests.post(f"{base_url}vps/trojanws", json=data_trojan)
 #
 # Menampilkan hasil dari respons
 # print("Response /vps/sshvpn:", response_ssh.status_code)
-print("Response /vps/trojanws:", response_trojan.status_code)
+print("Response /vps/trojanws:", response_trojan.text)
 # print("Response /vps/vmessws:", response_vmess.status_code)
 # print("Response /vps/vlessws:", response_vless.status_code)
 #

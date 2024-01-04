@@ -127,41 +127,31 @@ def trial_vm():
         z = json.loads(z)
         z1 = base64.b64decode(b[1].replace("vmess://","")).decode("ascii")
         z1 = json.loads(z1)
-        msg = f"""
-**━━━━━━━━━━━━━━━━━**
-**⭐ XRAY / VMESS ⭐**
-**━━━━━━━━━━━━━━━━━**
-**» Remarks      :** `{z["ps"]}`
-**» Domain       :** `{z["add"]}`
-**» XRAY DNS     :** `{HOST}`
-**» User Quota   :** `Unlimited`
-**» Port DNS     :** `443, 53`
-**» port TLS     :** `222-1000`
-**» Port NTLS    :** `80, 8080, 8081-9999`
-**» Port GRPC    :** `443`
-**» User ID      :** `{z["id"]}`
-**» AlterId      :** `0`
-**» Security     :** `auto`
-**» NetWork      :** `(WS) or (gRPC)`
-**» Path TLS     :** `(/multi path)/vmess`
-**» Path NLS     :** `(/multi path)/vmess`
-**» Path Dynamic :** `http://BUG.COM`
-**» ServiceName  :** `vmess-grpc`
-**━━━━━━━━━━━━━━━━━**
-**» Link TLS     :** 
-`{b[0].strip("'").replace(" ","")}`
-**━━━━━━━━━━━━━━━━━**
-**» Link NTLS    :** 
-`{b[1].strip("'").replace(" ","")}`
-**━━━━━━━━━━━━━━━━━**
-**» Link GRPC    :** 
-`{b[2].strip("'")}`
-**━━━━━━━━━━━━━━━━━**
-**» Format OpenClash :** https://{HOST}:81/vmess-{z["ps"]}.txt
-**━━━━━━━━━━━━━━━━━**
-**» Expired Until:** `{exp} Minutes`
-"""
-        return msg
+        return {
+  "meta": {                                                                                              "code": 200,                                                                                         "status": "success",                                                                                 "ip_address": "172.105.123.98",                                                                      "message": "Create VMESS-WS Success"
+  },
+  "data": {
+    "hostname": DOMAIN,
+    "ISP": ISP,
+    "CITY": kota,
+    "username": z['ps'],
+    "expired": "2 Hour",
+    "uuid": z['id'],
+    "port": {
+      "tls": "443",
+      "none": "80",
+      "any": "8080"
+    },
+    "path": {
+      "stn": "/vmess",
+      "multi": "/yourbug"
+    },
+    "link": {
+      "tls": b[0].strip("'").replace(" ",""),
+      "none": b[1].strip("'").replace(" ","") 
+    }
+  }
+}
 
 def trial_tr():
     exp = 60
