@@ -126,3 +126,7 @@ def vless(user,exp,pw):
 
 def ssh():
     return
+
+
+if __name__ == "__main__":
+    print(trojan("whsvsv","1"))
