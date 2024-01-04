@@ -39,12 +39,12 @@ async def tr(u,exp):
     return create.trojan(u,exp)
 
 @app.post("/vps/vmessws")
-async def vm(u,pw,exp):
-    return create.vmess(u,pw,exp)
+async def vm(u,exp):
+    return create.vmess(u,exp)
 
 @app.post("/vps/vlessws")
-async def vl(u,pw,exp):
-    return create.vless(u,pw,exp)
+async def vl(u,exp):
+    return create.vless(u,exp)
 
 if __name__ == "__main__":
    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
