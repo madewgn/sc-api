@@ -22,24 +22,24 @@ class UserData(BaseModel):
     expiration: str
 
 
-@app.get("/vps/trialvlessws")
+@app.post("/vps/trialvlessws")
 async def index():
     return trial.trial_vl()
 
 
-@app.get("/vps/trialtrojanws")
+@app.post("/vps/trialtrojanws")
 async def trialtr():
     return trial.trial_tr()
 
     
 
-@app.get("/vps/trialvmessws")
+@app.post("/vps/trialvmessws")
 async def trialws():
     return trial.trial_vm()
 
 
 
-@app.get("/vps/trialssh")
+@app.post("/vps/trialssh")
 async def trialssh():
     return trial.trial_ssh()
 
