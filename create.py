@@ -8,8 +8,8 @@ DOMAIN = HOST
 exp = 60
 
 
-def vmess(user,exp,pw):
-    cmd = f'printf "%s\n" "{user}" "{exp}" "{pw}" | addws-api'
+def vmess(user,exp):
+    cmd = f'printf "%s\n" "{user}" "{exp}" | addws-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
@@ -78,8 +78,8 @@ def trojan(user,exp):
 }
 
 
-def vless(user,exp,pw):
-    cmd = f'printf "%s\n" "{user}" "{exp}" "{pw}" | addvless'
+def vless(user,exp):
+    cmd = f'printf "%s\n" "{user}" "{exp}" | addvless-api'
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
