@@ -43,7 +43,7 @@ def trojan(user,exp):
         # today = DT.date.today()
         # later = today + DT.timedelta(days=int(exp))
         b = [x.group() for x in re.finditer("trojan://(.*)",a)]
-        print(b)
+        #        print(b)
         domain = re.search("@(.*?):",b[0]).group(1)
         uuid = re.search("trojan://(.*?)@",b[0]).group(1)
         remarks = re.search("#(.*)",b[0]).group(1)
