@@ -20,7 +20,7 @@ app = FastAPI()
 class UserData(BaseModel):
     username: str
     rebug: str
-    expired: str
+    expired: int
 
 
 @app.post("/vps/trialvlessws")
