@@ -52,7 +52,7 @@ def vmess(user,exp):
     "link": {
       "tls": b[0].strip("'").replace(" ",""),
       "none": b[1].strip("'").replace(" ",""), 
-      "grpc": {b[2].strip("'")}
+      "grpc": b[2].strip("'")
     }
   }
 }
