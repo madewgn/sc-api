@@ -38,7 +38,7 @@ def vmess(user,exp):
     "ISP": ISP,
     "CITY": kota,
     "username": z['ps'],
-    "expired": "2 Hour",
+    "expired": "30 days",
     "uuid": z['id'],
     "port": {
       "tls": "443",
@@ -51,7 +51,8 @@ def vmess(user,exp):
     },
     "link": {
       "tls": b[0].strip("'").replace(" ",""),
-      "none": b[1].strip("'").replace(" ","") 
+      "none": b[1].strip("'").replace(" ",""), 
+      "grpc": {b[2].strip("'")}
     }
   }
 }
