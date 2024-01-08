@@ -48,7 +48,7 @@ async def trialws():
 
 
 
-@app.post("/vps/trialssh")
+@app.post("/vps/trialsshvpn")
 async def trialssh():
     return trial.trial_ssh()
 
