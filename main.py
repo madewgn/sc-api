@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 import uvicorn
 import create
-
+import subprocess
 
 
 
@@ -21,6 +21,14 @@ class UserData(BaseModel):
     username: str
     rebug: str
     expired: int
+
+
+
+@app.get("/update")
+async def up():
+    subprocess.check_output('cd /etc/api && git pull', shell=True).decode("utf-8")
+    subprocess.check_output('systemctl restart wgnapi', shell=True).decode("utf-8")
+    return "berhasil di update"
 
 
 @app.post("/vps/trialvlessws")
