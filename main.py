@@ -27,7 +27,7 @@ class UserData(BaseModel):
 @app.get("/update")
 async def up():
     subprocess.check_output('cd /etc/api && git pull', shell=True).decode("utf-8")
-    subprocess.check_output('systemctl restart wgnapi', shell=True).decode("utf-8")
+    #    subprocess.check_output('systemctl restart wgnapi', shell=True).decode("utf-8")
     return "berhasil di update"
 
 
