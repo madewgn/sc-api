@@ -22,6 +22,12 @@ class UserData(BaseModel):
     rebug: str
     expired: int
 
+class sssh(BaseModel):
+    username: str
+    pw: str
+    expired: int
+
+
 
 
 @app.get("/update")
@@ -57,9 +63,9 @@ async def trialssh():
 # create
 
 @app.post("/vps/sshvpn")
-async def sshv(request: Request):
-    data = await request.json()
-    return create.ssh()
+async def sshv(request: Request, data: sssh):
+    return create.ssh(data.username,data.pw,data.expired)
+
 
 @app.post("/vps/trojanws")
 async def tr(request: Request, user_data: UserData):
