@@ -5,11 +5,35 @@ HOST =  subprocess.check_output('cat /etc/xray/domain', shell=True).decode("utf-
 kota =  subprocess.check_output('cat /etc/xray/city', shell=True).decode("utf-8")
 ISP =  subprocess.check_output('cat /etc/xray/isp', shell=True).decode("utf-8")
 DOMAIN = HOST
-exp = 60
+
+
+
+from datetime import datetime, timedelta
+import pytz
+
+def get_future_date(days):
+    # Zona waktu Makassar
+    makassar_tz = pytz.timezone('Asia/Makassar')
+
+    # Mendapatkan tanggal hari ini dengan zona waktu Makassar
+    today = datetime.now(makassar_tz)
+
+    # Menghitung tanggal di masa depan sesuai dengan jumlah hari yang dimasukkan
+    future_date = today + timedelta(days=days)
+
+    # Format tanggal dalam string "YYYY-MM-DD"
+    formatted_future_date = future_date.strftime('%Y-%m-%d')
+
+    return formatted_future_date
+
+# Contoh penggunaan: Mendapatkan tanggal 30 hari ke depan
+
+
 
 
 def vmess(user,exp):
     cmd = f'printf "%s\n" "{user}" "{exp}" | addws-api'
+    tgl = get_future_date(exp)
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
@@ -38,7 +62,7 @@ def vmess(user,exp):
     "ISP": ISP,
     "CITY": kota,
     "username": z['ps'],
-    "expired": "30 days",
+    "expired": tgl,
     "uuid": z['id'],
     "port": {
       "tls": "443",
