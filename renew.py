@@ -7,9 +7,9 @@ ISP =  subprocess.check_output('cat /etc/xray/isp', shell=True).decode("utf-8")
 DOMAIN = HOST
 
 
-
-from datetime import datetime, timedelta
-import pytz
+#
+# from datetime import datetime, timedelta
+# import pytz
 
 
 def trojan(u,hari):
