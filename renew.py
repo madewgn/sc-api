@@ -19,4 +19,4 @@ def trojan(u,hari):
 
 
 if __name__ == "__main__":
-    print(trojan("",""))
+    print(trojan("xwgn","1"))
