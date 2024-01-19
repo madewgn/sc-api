@@ -13,7 +13,8 @@ import pytz
 
 
 def trojan(u,hari):
-    cmd = f'printf "%s\n" "{u}" "{hari}" "2" "1000" | renewtr'
+    cmd = 'printf "%s\\n" "{}" "{}" "2" "1000" | renewtr'.format(u, hari)
+
     x = subprocess.check_output(cmd, shell=True).decode("utf-8")
     return x
 
