@@ -84,6 +84,7 @@ def vmess(user,exp):
 
 def trojan(user,exp):
     cmd = f'printf "%s\n" "{user}" "{exp}" | addtr-api'
+    tgl = get_future_date(exp)
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
@@ -109,7 +110,7 @@ def trojan(user,exp):
     "ISP": ISP,                                              
     "CITY": kota,
     "username": remarks,
-    "expired": exp,
+    "expired": tgl,
     "uuid": uuid,
     "port": {
       "tls": "443"
@@ -129,6 +130,7 @@ def trojan(user,exp):
 
 def vless(user,exp):
     cmd = f'printf "%s\n" "{user}" "{exp}" | addvless-api'
+    tgl = get_future_date(exp)
     try:
         a = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
@@ -153,7 +155,7 @@ def vless(user,exp):
     "ISP": ISP,
     "CITY": kota,
     "username": remarks,
-    "expired": exp,
+    "expired": tgl,
     "uuid": uuid,
     "port": {
       "tls": "443",
@@ -175,6 +177,7 @@ def vless(user,exp):
 
 def ssh(user,pw,exp):
     cmd = f'useradd -e `date -d "{exp} days" +"%Y-%m-%d"` -s /bin/false -M {user} && echo "{pw}\n{pw}" | passwd {user}'
+    tgl = get_future_date(exp)
     try:
       subprocess.check_output(cmd,shell=True)
     except:
@@ -195,7 +198,7 @@ def ssh(user,pw,exp):
             "servername": "",
             "pubkey": "",
             "password": pw.strip(),
-            "exp": exp,
+            "exp": tgl,
             "port": {
               "tls": 443,
               "none": 80,
