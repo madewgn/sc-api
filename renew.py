@@ -32,7 +32,7 @@ def vless(u,hari):
 
 
 def trojan(u,hari):
-    cmd = 'printf "%s\\n" "{}" "{}" "2" "1000" | renewtr'.format(u, hari)
+    cmd = 'printf "%s\\n" "{}" "{}" "2" "1000" | renewtr-api'.format(u, hari)
 
     x = subprocess.check_output(cmd, shell=True).decode("utf-8")
     return x
