@@ -28,6 +28,17 @@ class sssh(BaseModel):
     expired: int
 
 
+class PerPanjang(BaseModel):
+    username: str
+    expired: int
+
+
+
+
+@app.post("/vps/renewtr")
+async def renew_tr(request: Request, user_data: PerPanjang):
+    return create.trojan(user_data.username, user_data.expired)
+
 
 
 @app.get("/update")
