@@ -60,7 +60,9 @@ class PerPanjang(BaseModel):
     expired: int
 
 
-
+@app.get("/protected")
+async def protected_route(token: str = Depends(verify_token)):
+    return {"pesan": "Akses berhasil!"}
 
 @app.post("/vps/renewtrojan")
 async def renew_tr(request: Request, user_data: PerPanjang):
