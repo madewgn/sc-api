@@ -12,6 +12,33 @@ import subprocess
 
 
 
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from pydantic import BaseModel
+import jwt
+
+
+
+# Secret key untuk JWT (sebaiknya simpan dengan aman, jangan letakkan di sini)
+SECRET_KEY = "secret"
+ALGORITHM = "HS256"
+
+# Model untuk JWT token
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+# Mekanisme otentikasi
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# Fungsi untuk memverifikasi token JWT
+def verify_token(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        # Di sini Anda dapat menambahkan logika untuk memeriksa dan mengizinkan akses berdasarkan payload token yang diterima
+        return payload
+    except jwt.JWTError:
+        raise HTTPException(status_code=401, detail="Token tidak valid")
 
 
 app = FastAPI()
@@ -35,8 +62,16 @@ class PerPanjang(BaseModel):
 
 
 
-@app.post("/vps/renewtr")
+@app.post("/vps/renewtrojan")
 async def renew_tr(request: Request, user_data: PerPanjang):
+    return create.trojan(user_data.username, user_data.expired)
+@app.post("/vps/renewvmess")
+async def renew_vm(request: Request, user_data: PerPanjang):
+    return create.trojan(user_data.username, user_data.expired)
+
+
+@app.post("/vps/renewvless")
+async def renew_vl(request: Request, user_data: PerPanjang):
     return create.trojan(user_data.username, user_data.expired)
 
 

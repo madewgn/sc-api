@@ -14,7 +14,8 @@ def trial_ssh():
     user = "trialX"+str(random.randint(100,1000))
     pw = "1"
 
-    cmd = f'useradd -e `date -d "{exp} days" +"%Y-%m-%d"` -s /bin/false -M {user} && echo "{pw}\n{pw}" | passwd {user} | tmux new-session -d -s {user} "trial trialssh {user} {exp}"'
+    cmd = f'useradd -e `date -d " 1 days" +"%Y-%m-%d"` -s /bin/false -M {user} && echo "{pw}\n{pw}" | passwd {user} | tmux new-session -d -s {user} "trial trialssh {user} {exp}"'
+
     try:
         subprocess.check_output(cmd,shell=True)
     except:
