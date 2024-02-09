@@ -20,7 +20,7 @@ import jwt
 
 
 # Secret key untuk JWT (sebaiknya simpan dengan aman, jangan letakkan di sini)
-SECRET_KEY = "secret"
+SECRET_KEY = "x"
 ALGORITHM = "HS256"
 
 # Model untuk JWT token
