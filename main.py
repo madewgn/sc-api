@@ -20,7 +20,7 @@ from jwt.exceptions import DecodeError
 
 
 # Secret key untuk JWT (sebaiknya simpan dengan aman, jangan letakkan di sini)
-SECRET_KEY = "x"
+SECRET_KEY = "madewgn"
 ALGORITHM = "HS256"
 
 # Model untuk JWT token
