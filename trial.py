@@ -81,6 +81,7 @@ def trial_vl():
         remarks = re.search("#(.*)",x[0]).group(1)
         # domain = re.search("@(.*?):",x[0]).group(1)
         uuid = re.search("vless://(.*?)@",x[0]).group(1)
+        exp= exp + " Minute"
         # path = re.search("path=(.*)&",x[0]).group(1)
         return {
   "meta": {
