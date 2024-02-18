@@ -1,8 +1,8 @@
 #!/bin/bash
 
 do="http://do.madewgn.eu.org:8000/update"
-linode="http://linode.madewgn.eu.org:8000/update"
-id_linode="http://id-linode.madewgn.eu.org:8000/update"
+linode="http://do2.madewgn.eu.org:8000/update"
+id_linode="http://id-rb.madewgn.eu.org:8000/update"
 
 response_do=$(curl -s "$do")
 response_linode=$(curl -s "$linode")
