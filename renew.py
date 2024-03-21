@@ -33,9 +33,18 @@ def vless(u,hari):
 
 def trojan(u,hari):
     cmd = 'printf "%s\\n" "{}" "{}" "2" "1000" | renewtr-api.sh'.format(u, hari)
+    text = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    client_name_pattern = re.compile(r'Client Name\s*:\s*(\w+)')
+    exp_date_pattern = re.compile(r'Expired On\s*:\s*(\d{4}-\d{2}-\d{2})')
 
-    x = subprocess.check_output(cmd, shell=True).decode("utf-8")
-    return x
+    # Mencari kecocokan dalam teks
+    client_name_match = client_name_pattern.search(text)
+    exp_date_match = exp_date_pattern.search(text)
+    client_name = client_name_match.group(1)
+    exp_date = exp_date_match.group(1)
+    return {"username": client_name,
+            "exp": exp_date
+            }
 
 
 if __name__ == "__main__":
