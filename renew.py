@@ -42,6 +42,8 @@ def trojan(u,hari):
     exp_date_match = exp_date_pattern.search(text)
     client_name = client_name_match.group(1)
     exp_date = exp_date_match.group(1)
+    print(client_name)
+    print(exp_date)
     return {"username": client_name,
             "exp": exp_date
             }
