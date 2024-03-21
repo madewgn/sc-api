@@ -1,6 +1,7 @@
 from fastapi import *
 import trial
 import create
+import renew
 import uvicorn
 
 
@@ -67,10 +68,10 @@ async def protected_route(token: str = Depends(verify_token)):
 
 @app.post("/vps/renewtrojan")
 async def renew_tr(request: Request, user_data: PerPanjang):
-    return create.trojan(user_data.username, user_data.expired)
+    return renew.trojan(user_data.username, user_data.expired)
 @app.post("/vps/renewvmess")
 async def renew_vm(request: Request, user_data: PerPanjang):
-    return create.trojan(user_data.username, user_data.expired)
+    return renew.vmess(user_data.username, user_data.expired)
 
 
 @app.post("/vps/renewvless")

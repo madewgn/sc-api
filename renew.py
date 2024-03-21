@@ -32,6 +32,7 @@ def vless(u,hari):
 
 
 def trojan(u,hari):
+<<<<<<< HEAD
     cmd = 'printf "%s\\n" "{}" "{}" "2" "1000" | renewtr-api.sh'.format(u, hari)
     text = subprocess.check_output(cmd, shell=True).decode("utf-8")
     client_name_pattern = re.compile(r'Client Name\s*:\s*(\w+)')
@@ -45,7 +46,13 @@ def trojan(u,hari):
     return {"username": client_name,
             "exp": exp_date
             }
+=======
+    cmd = f'printf "%s\n" "{u}" "{hari}" "2" "1000" | renewtr-api.sh'
+
+    x = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    return x
+>>>>>>> 3e8b0c29b14df3a1e2f8d4ee302f6d6b482daba5
 
 
 if __name__ == "__main__":
-    print(trojan("xwgn","1"))
+    print(trojan("1hari","1"))
