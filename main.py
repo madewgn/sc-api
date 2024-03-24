@@ -66,9 +66,16 @@ class PerPanjang(BaseModel):
 async def protected_route(token: str = Depends(verify_token)):
     return {"pesan": "Akses berhasil!"}
 
+
+@app.post("/vps/renewssh")
+async def renew_ssh(request: Request, user_data: PerPanjang):
+    return renew.ssh(user_data.username, user_data.expired)
+
 @app.post("/vps/renewtrojan")
 async def renew_tr(request: Request, user_data: PerPanjang):
     return renew.trojan(user_data.username, user_data.expired)
+
+
 @app.post("/vps/renewvmess")
 async def renew_vm(request: Request, user_data: PerPanjang):
     return renew.vmess(user_data.username, user_data.expired)
